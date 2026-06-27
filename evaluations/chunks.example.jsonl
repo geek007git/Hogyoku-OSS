@@ -1,0 +1,3 @@
+{"id":"chunk-1","content_hash":"hash-1","content":"Hybrid retrieval combines sparse lexical matching with dense semantic retrieval. It improves recall on entity-heavy and paraphrased queries by keeping exact terms and semantic matches available to the reranker."}
+{"id":"chunk-2","content_hash":"hash-2","content":"The verification loop decomposes a draft answer into claims, checks each claim against cited passages, and withholds unsupported answers rather than presenting a guess."}
+{"id":"chunk-3","content_hash":"hash-3","content":"Reranking improves precision by filtering candidates that are related to the topic but do not contain answer-bearing evidence before generation."}

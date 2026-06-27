@@ -1,0 +1,27 @@
+[project]
+name = "hogyoku-guardrails"
+version = "0.1.0"
+description = "Offline RAG and security guardrails for Hogyoku."
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "python"}
+
+[tool.setuptools.packages.find]
+where = ["python"]
+
+[project.scripts]
+hogyoku-security-scan = "hogyoku_guardrails.security_scan:main"
+hogyoku-citation-audit = "hogyoku_guardrails.citation_audit:main"
+hogyoku-chunk-audit = "hogyoku_guardrails.chunk_audit:main"
+hogyoku-rag-lint = "hogyoku_guardrails.rag_lint:main"
+hogyoku-security-report = "hogyoku_guardrails.security_report:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

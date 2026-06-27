@@ -1,0 +1,71 @@
+---
+- name: Harden Linux hosts for Hogyoku
+  hosts: all
+  become: true
+  vars:
+    hogyoku_firewall_allow_tcp:
+      - 22
+      - 80
+      - 443
+      - 4173
+  tasks:
+    - name: Update package cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+
+    - name: Install baseline security packages
+      ansible.builtin.apt:
+        name:
+          - ca-certificates
+          - curl
+          - fail2ban
+          - ufw
+          - unattended-upgrades
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Disable password authentication for SSH
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "^#?PasswordAuthentication"
+        line: "PasswordAuthentication no"
+        validate: "sshd -t -f %s"
+      notify: Restart ssh
+
+    - name: Disable root SSH login
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "^#?PermitRootLogin"
+        line: "PermitRootLogin no"
+        validate: "sshd -t -f %s"
+      notify: Restart ssh
+
+    - name: Allow required firewall ports
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop: "{{ hogyoku_firewall_allow_tcp }}"
+
+    - name: Enable firewall
+      community.general.ufw:
+        state: enabled
+        policy: deny
+
+    - name: Enable unattended upgrades
+      ansible.builtin.copy:
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          APT::Periodic::Update-Package-Lists "1";
+          APT::Periodic::Unattended-Upgrade "1";
+
+  handlers:
+    - name: Restart ssh
+      ansible.builtin.service:
+        name: ssh
+        state: restarted

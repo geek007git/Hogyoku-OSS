@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: Hogyoku
+message: >-
+  If you use Hogyoku in your research or project, please cite it
+  using the metadata in this file.
+type: software
+authors:
+  - name: The Hogyoku Project
+abstract: >-
+  A self-hostable, multimodal Retrieval-Augmented Generation (RAG)
+  workspace that returns cited answers and independently verifies
+  each claim against the evidence, withholding unsupported answers.
+  Hybrid semantic and lexical retrieval on PostgreSQL with pgvector;
+  runs free and fully offline, and scales to managed cloud with the
+  same code. Vendor-neutral and private by default.
+keywords:
+  - rag
+  - retrieval-augmented-generation
+  - pgvector
+  - postgresql
+  - self-hosted
+  - verification
+  - citations
+  - multimodal
+  - ocr
+license: MIT
+repository-code: "https://github.com/geek007git/Hogyoku-OSS"
+version: 2.0.0
+date-released: "2026-06-27"
