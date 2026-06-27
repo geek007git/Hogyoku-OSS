@@ -1,5 +1,5 @@
 FROM node:22-bookworm-slim AS build
-LABEL org.opencontainers.image.source="https://github.com/geek007git/hogyoku"
+LABEL org.opencontainers.image.source="https://github.com/geek007git/Hogyoku-OSS"
 WORKDIR /app
 COPY package*.json tsconfig.json ./
 RUN npm ci

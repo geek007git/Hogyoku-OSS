@@ -1,7 +1,7 @@
 # Hogyoku
 
-[![CI](https://github.com/geek007git/hogyoku/actions/workflows/ci.yml/badge.svg)](https://github.com/geek007git/hogyoku/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/geek007git/hogyoku/actions/workflows/codeql.yml/badge.svg)](https://github.com/geek007git/hogyoku/actions/workflows/codeql.yml)
+[![CI](https://github.com/geek007git/Hogyoku-OSS/actions/workflows/ci.yml/badge.svg)](https://github.com/geek007git/Hogyoku-OSS/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/geek007git/Hogyoku-OSS/actions/workflows/codeql.yml/badge.svg)](https://github.com/geek007git/Hogyoku-OSS/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](package.json)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)

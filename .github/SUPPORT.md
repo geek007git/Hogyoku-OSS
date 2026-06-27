@@ -8,8 +8,8 @@ Thanks for using Hogyoku. Here's how to get help.
    most common setup and runtime questions.
 2. Check the [documentation](../README.md#documentation): OVERVIEW, ARCHITECTURE,
    API, TIERS, and SETUP_REQUIRED.
-3. Search existing [issues](https://github.com/geek007git/hogyoku/issues) and
-   [discussions](https://github.com/geek007git/hogyoku/discussions).
+3. Search existing [issues](https://github.com/geek007git/Hogyoku-OSS/issues) and
+   [discussions](https://github.com/geek007git/Hogyoku-OSS/discussions).
 
 ## Where to ask
 
