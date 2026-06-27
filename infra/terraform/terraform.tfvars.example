@@ -1,0 +1,13 @@
+project                = "hogyoku"
+environment            = "prod"
+aws_region             = "us-east-1"
+app_origin             = "https://app.example.com"
+vpc_id                 = "vpc-xxxxxxxx"
+private_subnet_ids     = ["subnet-xxxxxxxx", "subnet-yyyyyyyy"]
+app_security_group_ids = ["sg-xxxxxxxx"]
+
+# Store real values in your secret manager or an ignored *.auto.tfvars file.
+database_url    = "REPLACE_WITH_DATABASE_URL"
+redis_url       = "REPLACE_WITH_REDIS_URL"
+session_secret  = "replace-with-a-64-character-random-secret"
+gemini_api_key  = ""

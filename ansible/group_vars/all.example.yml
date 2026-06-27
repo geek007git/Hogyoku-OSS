@@ -1,0 +1,11 @@
+hogyoku_app_dir: /opt/hogyoku
+hogyoku_repo_url: https://github.com/geek007git/hogyoku.git
+hogyoku_branch: main
+hogyoku_compose_project: hogyoku
+hogyoku_allowed_ssh_users:
+  - ubuntu
+hogyoku_firewall_allow_tcp:
+  - 22
+  - 80
+  - 443
+  - 4173

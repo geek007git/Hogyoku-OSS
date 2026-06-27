@@ -1,0 +1,68 @@
+---
+- name: Deploy Hogyoku with Docker Compose
+  hosts: hogyoku_web
+  become: true
+  vars_files:
+    - ../group_vars/all.example.yml
+  tasks:
+    - name: Install Docker prerequisites
+      ansible.builtin.apt:
+        name:
+          - ca-certificates
+          - curl
+          - git
+        state: present
+        update_cache: true
+      when: ansible_os_family == "Debian"
+
+    - name: Install Docker using convenience script
+      ansible.builtin.shell: |
+        set -euo pipefail
+        if ! command -v docker >/dev/null 2>&1; then
+          curl -fsSL https://get.docker.com | sh
+        fi
+      args:
+        executable: /bin/bash
+        creates: /usr/bin/docker
+
+    - name: Create application directory
+      ansible.builtin.file:
+        path: "{{ hogyoku_app_dir }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: "0750"
+
+    - name: Checkout Hogyoku repository
+      ansible.builtin.git:
+        repo: "{{ hogyoku_repo_url }}"
+        dest: "{{ hogyoku_app_dir }}"
+        version: "{{ hogyoku_branch }}"
+        update: true
+      become_user: "{{ ansible_user }}"
+
+    - name: Refuse deployment without environment file
+      ansible.builtin.stat:
+        path: "{{ hogyoku_app_dir }}/.env"
+      register: env_file
+
+    - name: Stop if .env is missing
+      ansible.builtin.fail:
+        msg: "Create {{ hogyoku_app_dir }}/.env from SETUP_REQUIRED.md before deploying."
+      when: not env_file.stat.exists
+
+    - name: Build and start Hogyoku
+      ansible.builtin.command:
+        cmd: docker compose up -d --build --remove-orphans
+        chdir: "{{ hogyoku_app_dir }}"
+      environment:
+        COMPOSE_PROJECT_NAME: "{{ hogyoku_compose_project }}"
+
+    - name: Wait for health endpoint
+      ansible.builtin.uri:
+        url: http://127.0.0.1:4173/api/health
+        status_code: 200
+      register: health
+      retries: 30
+      delay: 5
+      until: health.status == 200

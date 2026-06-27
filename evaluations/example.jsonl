@@ -1,0 +1,3 @@
+{"question":"How does hybrid retrieval combine dense and lexical search?","relevant_ids":["chunk-hybrid-1","chunk-hybrid-2"],"retrieved_ids":["chunk-hybrid-1","chunk-rerank-1","chunk-hybrid-2"]}
+{"question":"Why is a verification pass useful?","relevant_ids":["chunk-verify-1"],"retrieved_ids":["chunk-grounding-2","chunk-verify-1","chunk-rerank-2"]}
+{"question":"What does reranking improve?","relevant_ids":["chunk-rerank-1"],"retrieved_ids":["chunk-rerank-1","chunk-hybrid-2"]}

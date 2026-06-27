@@ -1,0 +1,8 @@
+---
+profile: production
+skip_list:
+  # The deployment playbook intentionally uses Docker's official installer on
+  # minimal VPS hosts where package repositories vary by distro image.
+  - command-instead-of-shell
+  - risky-shell-pipe
+  - no-changed-when

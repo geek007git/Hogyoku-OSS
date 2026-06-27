@@ -1,0 +1,3 @@
+Hybrid retrieval combines sparse lexical matching with dense semantic retrieval.
+Reranking improves precision by filtering candidates that are related but do not answer the question.
+Verification checks each generated claim against cited evidence before the answer is shown.
