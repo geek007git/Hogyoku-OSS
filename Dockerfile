@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim AS build
+FROM node:26-bookworm-slim AS build
 LABEL org.opencontainers.image.source="https://github.com/geek007git/Hogyoku-OSS"
 WORKDIR /app
 COPY package*.json tsconfig.json ./
@@ -7,7 +7,7 @@ COPY src ./src
 COPY tests ./tests
 RUN npm run build
 
-FROM node:22-bookworm-slim AS runtime
+FROM node:26-bookworm-slim AS runtime
 ENV NODE_ENV=production
 WORKDIR /app
 COPY package*.json ./
