@@ -11,7 +11,7 @@ import { requireUser } from "./auth.js";
 
 const askSchema = z.object({
   question: z.string().trim().min(3).max(4_000),
-  threadId: z.string().uuid().optional(),
+  threadId: z.string().uuid().nullish(),
   documentIds: z.array(z.string().uuid()).max(100).optional(),
 });
 
