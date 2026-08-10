@@ -8,6 +8,7 @@ locals {
     { name = "S3_BUCKET", value = aws_s3_bucket.documents.bucket },
     { name = "S3_REGION", value = var.aws_region },
     { name = "S3_FORCE_PATH_STYLE", value = "false" },
+    { name = "S3_SERVER_SIDE_ENCRYPTION", value = "AES256" },
     { name = "CHAT_MODEL", value = "gemini-2.5-flash-lite" },
     { name = "VISION_MODEL", value = "gemini-2.5-flash-lite" },
     { name = "EMBEDDING_MODEL", value = "gemini-embedding-001" },

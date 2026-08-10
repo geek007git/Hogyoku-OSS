@@ -36,7 +36,10 @@ export async function uploadObject(
       Key: key,
       Body: body,
       ContentType: contentType,
-      ServerSideEncryption: "AES256",
+      // MinIO and R2 reject the SSE header; they encrypt at rest on their own.
+      ...(config.S3_SERVER_SIDE_ENCRYPTION === "none"
+        ? {}
+        : { ServerSideEncryption: config.S3_SERVER_SIDE_ENCRYPTION }),
     }),
   );
 }

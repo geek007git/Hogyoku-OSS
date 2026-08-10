@@ -52,6 +52,7 @@ generative model.
 | `S3_ACCESS_KEY` | Storage access key with access to that bucket only |
 | `S3_SECRET_KEY` | Matching storage secret |
 | `S3_FORCE_PATH_STYLE` | `false` for AWS S3; often `true` for MinIO/R2 |
+| `S3_SERVER_SIDE_ENCRYPTION` | `AES256` (or `aws:kms`) for AWS S3; `none` for MinIO/R2, which reject the header and encrypt at rest themselves |
 | `SESSION_SECRET` | At least 32 random characters; use 64+ |
 | `GEMINI_API_KEY` | Google AI Studio Gemini API key |
 

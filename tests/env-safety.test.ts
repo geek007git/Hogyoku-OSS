@@ -15,6 +15,24 @@ test(".env.example contains placeholders, not production credentials", () => {
   assert.match(example, /^GEMINI_API_KEY=$/m);
 });
 
+test("every env preset pins an object-store encryption mode", () => {
+  const presets = [
+    ".env.example",
+    ".env.free.example",
+    ".env.standard.example",
+    ".env.pro.example",
+  ];
+
+  for (const preset of presets) {
+    const contents = fs.readFileSync(preset, "utf8");
+    assert.match(
+      contents,
+      /^S3_SERVER_SIDE_ENCRYPTION=(AES256|aws:kms|none)$/m,
+      `${preset} must declare a valid S3_SERVER_SIDE_ENCRYPTION`,
+    );
+  }
+});
+
 test("local environment files are excluded from Git", () => {
   const gitignore = fs.readFileSync(".gitignore", "utf8");
   assert.match(gitignore, /^\.env$/m);

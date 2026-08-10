@@ -18,6 +18,9 @@ const schema = z.object({
   S3_ACCESS_KEY: z.string().min(1),
   S3_SECRET_KEY: z.string().min(1),
   S3_FORCE_PATH_STYLE: booleanString,
+  S3_SERVER_SIDE_ENCRYPTION: z
+    .enum(["AES256", "aws:kms", "none"])
+    .default("AES256"),
   SESSION_SECRET: z.string().min(32),
   GEMINI_API_KEY: z.string().optional().default(""),
   CHAT_MODEL: z.string().default("gemini-2.5-flash-lite"),
